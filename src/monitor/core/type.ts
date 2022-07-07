@@ -1,4 +1,4 @@
-type MonitorOption = {
+export type MonitorOption = {
     onMount:Function
     onError:Function
     onUnMount:Function
@@ -7,3 +7,8 @@ type MonitorOption = {
 type BaseConfigInitPlugin = {
     init:Function
 } 
+
+export interface Plugin {
+    run:Function
+    unload:Function
+}

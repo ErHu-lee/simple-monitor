@@ -5,7 +5,7 @@ import { PostData } from "../core/types";
 
 export abstract class Sender{
     endpoint:string //发送的URL
-    constructor(endpoint,){
+    constructor(endpoint:string,){
         this.endpoint = endpoint;
     }
     abstract post(data:PostData):void;

@@ -1,5 +1,5 @@
-import { Monitor } from "../../core";
-import { WebMonitor } from "../core";
+import { Monitor } from "../../core/index";
+import { WebMonitor } from "../core/index";
 import { getDomSelector } from "../core/getDomSelector";
 import { JSErrorLog, LOG_TYPE } from "../core/types";
 import { Sender } from "./Sender";
@@ -12,7 +12,6 @@ export class JSErrorMonitor{
         this.monitor = monitor
     }
     run(){
-        let monitor = this.monitor;
         window.addEventListener("error",(event:ErrorEvent)=>{
             let logger:JSErrorLog = {
                 type:LOG_TYPE.ERROR,
@@ -20,7 +19,7 @@ export class JSErrorMonitor{
                 message:event.message,
                 position:`${event.lineno}:${event.colno}`, //准备用sourceMap代替
                 stack: event.error?.stack,
-                selector: getDomSelector(monitor.currentEvent)
+                selector: getDomSelector(this.monitor.currentEventPlugin?.currentEvent)
             }
             this.sender.post({
                 detail: logger
@@ -28,8 +27,17 @@ export class JSErrorMonitor{
         },true)
     
     
-        window.addEventListener("unhandledrejection",(e)=>{
-       
+        window.addEventListener("unhandledrejection",(event:PromiseRejectionEvent) => {
+            let logger:JSErrorLog = {
+                type:LOG_TYPE.ERROR,
+                errorType:"Error_Promise",
+                message: event.reason.message,
+                stack: event.reason.stack,
+                selector: getDomSelector(this.monitor.currentEventPlugin?.currentEvent)
+            }
+            this.sender.post({
+                detail: logger
+            })
         },true)
 
     }

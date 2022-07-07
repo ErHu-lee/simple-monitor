@@ -25,7 +25,5 @@ export function injectJsError(){
         console.log(e)
     },true)
  
-
-
 }
 

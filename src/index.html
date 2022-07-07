@@ -23,28 +23,18 @@
 
 
     let btn1 = document.getElementById("jsError")
-    btn1.addEventListener("click", ()=>{
-       throw new Error("TypeError")
-    })
+    btn1.onclick = ()=>{
+        let a = btn1.a.b
+    }
 
     let btn2 = document.getElementById("promiseError")
-    btn2.addEventListener("click",()=>{
+    btn2.onclick = ()=>{
         new Promise((resolve, reject)=>{
-            reject(2)
+            let a = btn1.a.b
         })
-    })
-
-    setTimeout(() => {
-        let app = document.getElementById("app")
-        let list = ""
-        for(let i of [1,2,3,4,5,6]){
-          list += `<div>HELLO${i}</div>`
-        }
-
-        app.innerHTML = app.innerHTML + list
-    }, 2000);
-
-    
-    
+    }
+   
 
 </script>
+
+<script src="//lf3-cdn-tos.ytescm.com/obj/sttic/xitu_juejin_w/fce751a.js" defer=""></script>
