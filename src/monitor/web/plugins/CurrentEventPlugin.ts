@@ -7,7 +7,6 @@ export class CurrentEventPlugin{
     run(){
         ['click','touchstart','mousedown','keydown','mouseover'].forEach(eventType=>{
             document.addEventListener(eventType,(event)=>{
-              
                 this.currentEvent = event
                 console.log(this.currentEvent)
             },{

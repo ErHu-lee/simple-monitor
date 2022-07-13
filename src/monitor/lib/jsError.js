@@ -24,6 +24,5 @@ export function injectJsError(){
     window.addEventListener("unhandledrejection",(e)=>{
         console.log(e)
     },true)
- 
 }
 

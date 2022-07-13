@@ -7,7 +7,7 @@ export enum LOG_TYPE {
     PERFORMANCE = "performance",
     BEHAVE = "behave"
 }
-type errorType = "Error_JS" | "Error_Promise" | 'Error_Source'
+type errorType = "Error_JS" | "Error_Promise" | 'Error_Source'| "Error_BlankScreen"
 
 export interface JSErrorLog{
     type: LOG_TYPE,
@@ -23,5 +23,12 @@ export interface ResourceLoadErrorLog{
     errorType: errorType,
     url:string,
     resourceType: "JS" | "CSS" | "OTHER"
-
 }
+
+export interface BlankScreenErrorLog{
+    type:LOG_TYPE,
+    errorType: errorType,
+    image:string,
+}
+
+

@@ -13,7 +13,6 @@ export class ResourceMonitorPlugin implements Plugin{
     run(){
         // 当浏览器不支持 window.performance.getEntries 的时候，用下边这种方式
         window.addEventListener('error',(e:ErrorEvent) => {
-            debugger;
             let target: any = e.target
             let typeName = target?.typeName;
             if(target == null || typeName == null) return;
